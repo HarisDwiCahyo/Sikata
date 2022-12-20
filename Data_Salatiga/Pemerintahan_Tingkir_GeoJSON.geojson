@@ -1,0 +1,13 @@
+var pemerintahan ={
+"type": "FeatureCollection",
+"name": "Pemerintahan_Tingkir_GeoJSON",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Tingkir Tengah", "FolderPath": "Kecamatan Tingkir", "SymbolID": 0, "AltMode": -1, "Base": 0.0, "Snippet": null, "PopupInfo": null, "HasLabel": -1, "LabelID": 0, "Pddk": 5382, "Luas": 1.38, "Kepadatan": 3900.0 }, "geometry": { "type": "Point", "coordinates": [ 110.518814181000039, -7.358598511999958, 0.0 ] } },
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Gendongan", "FolderPath": "Kecamatan Tingkir", "SymbolID": 0, "AltMode": -1, "Base": 0.0, "Snippet": null, "PopupInfo": null, "HasLabel": -1, "LabelID": 0, "Pddk": 5436, "Luas": 0.69, "Kepadatan": 7878.2608695700001 }, "geometry": { "type": "Point", "coordinates": [ 110.507511500000078, -7.336855499999956, 0.0 ] } },
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor KelurahanSidorejo Kidul", "FolderPath": "Kecamatan Tingkir", "SymbolID": 0, "AltMode": -1, "Base": 0.0, "Snippet": null, "PopupInfo": null, "HasLabel": -1, "LabelID": 0, "Pddk": 5865, "Luas": 2.78, "Kepadatan": 2109.71223022 }, "geometry": { "type": "Point", "coordinates": [ 110.518070500000078, -7.337512699999934, 0.0 ] } },
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Tingkir Lor", "FolderPath": "Kecamatan Tingkir", "SymbolID": 0, "AltMode": -1, "Base": 0.0, "Snippet": null, "PopupInfo": null, "HasLabel": -1, "LabelID": 0, "Pddk": 4719, "Luas": 1.77, "Kepadatan": 2666.1016949200002 }, "geometry": { "type": "Point", "coordinates": [ 110.527437400000053, -7.35959, 0.0 ] } },
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Kutowinangun", "FolderPath": "Kecamatan Tingkir", "SymbolID": 0, "AltMode": -1, "Base": 0.0, "Snippet": null, "PopupInfo": null, "HasLabel": -1, "LabelID": 0, "Pddk": 21224, "Luas": 2.94, "Kepadatan": 7219.0476190500003 }, "geometry": { "type": "Point", "coordinates": [ 110.509483200000034, -7.32861639999993, 0.0 ] } },
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Kalibening", "FolderPath": "Kecamatan Tingkir", "SymbolID": 0, "AltMode": -1, "Base": 0.0, "Snippet": null, "PopupInfo": null, "HasLabel": -1, "LabelID": 0, "Pddk": 1985, "Luas": 0.99, "Kepadatan": 2005.0505050500001 }, "geometry": { "type": "Point", "coordinates": [ 110.519665800000041, -7.344897299999957, 0.0 ] } }
+]
+}

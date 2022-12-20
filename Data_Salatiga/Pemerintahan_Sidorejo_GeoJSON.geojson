@@ -1,0 +1,13 @@
+var pemerintahan={
+"type": "FeatureCollection",
+"name": "Pemerintahan_Sidorejo_GeoJSON",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Pulutan", "FolderPath": "Kecamatan Sidorejo", "Pddk": 4213, "Luas": 2.37, "Kepadatan": 1777.6371308 }, "geometry": { "type": "Point", "coordinates": [ 110.48054, -7.316011699999933, 0.0 ] } },
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Salatiga", "FolderPath": "Kecamatan Sidorejo", "Pddk": 18293, "Luas": 2.02, "Kepadatan": 9055.9405940600009 }, "geometry": { "type": "Point", "coordinates": [ 110.506434045000049, -7.315728476999936, 0.0 ] } },
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Blotongan", "FolderPath": "Kecamatan Sidorejo", "Pddk": 12450, "Luas": 4.24, "Kepadatan": 2936.32075472 }, "geometry": { "type": "Point", "coordinates": [ 110.477297700000065, -7.294956399999933, 0.0 ] } },
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Sidorejo Lor", "FolderPath": "Kecamatan Sidorejo", "Pddk": 15891, "Luas": 2.72, "Kepadatan": 5842.2794117599997 }, "geometry": { "type": "Point", "coordinates": [ 110.491976600000044, -7.309946899999943, 0.0 ] } },
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Kauman Kidul", "FolderPath": "Kecamatan Sidorejo", "Pddk": 3968, "Luas": 1.96, "Kepadatan": 2024.48979592 }, "geometry": { "type": "Point", "coordinates": [ 110.515928500000086, -7.30223449999994, 0.0 ] } },
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Bugel", "FolderPath": "Kecamatan Sidorejo", "Pddk": 3128, "Luas": 2.94, "Kepadatan": 1063.9455782299999 }, "geometry": { "type": "Point", "coordinates": [ 110.501794100000041, -7.308876599999962, 0.0 ] } }
+]
+}

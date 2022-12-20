@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="DIVSIG UGM">
+    <meta name="description" content="leaflet basic">
+
+    <!--titler-->
+    <title>PETA KEPADATAN PENDUDUK KOTA SALATIGA</title>
+
+    <!--leafllet JS-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <!--bootsrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!--button search-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+
+    <!-- Leaflet Measure CSS Library -->
+    <link rel="stylesheet" href="Asset/plugins/leaflet-measure/leaflet-measure.css">
+
+    <!-- Search CSS Library -->
+    <link rel="stylesheet" href="Asset/plugins/leaflet-search/leaflet-search.css">
+
+    <!-- Geolocation CSS Library for Plugin -->
+    <link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.css">
+
+    <!-- Leaflet Mouse Position CSS Library -->
+    <link rel="stylesheet" href="Asset/plugins/leaflet-mouseposition/L.Control.MousePosition.css">
+
+    <!-- EasyPrint CSS Library -->
+    <link rel="stylesheet" href="Asset/plugins/leaflet-easyprint/easyPrint.css">
+
+    <!--Routing CSS Library-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+ 
+    <!-- Tab browser icon -->
+    <link rel="icon" type="image/x-icon" href="http://luk.staff.ugm.ac.id/logo/UGM/Resmi/Warna.gif">
+
+    <!--marker cluster-->
+    <link rel="stylesheet" href="./dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="./dist/MarkerCluster.Default.css" />
+
+    <!--link font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Lato&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+
+
+    <!--100vh-->
+    <style>
+       
+        #map{
+            height: 90vh;
+            width: 100%;
+        }
+        h5{
+          font-family: 'Roboto Mono', monospace;
+            font-size: 25px;
+           
+        }
+
+        .info {
+            padding: 6px 8px;
+            font: 14px/16px Arial, Helvetica, sans-serif;
+            background: rgb(209, 18, 18);
+            background: rgba(255,255,255,0.8);
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            border-radius: 5px;
+        }
+        .info h4 {
+            margin: 0 0 5px;
+            color: #777;
+        }
+
+        .legend {
+            line-height: 18px;
+            color: #555;
+        }
+        .legend i {
+            width: 18px;
+            height: 18px;
+            float: left;
+            margin-right: 8px;
+            opacity: 0.7;
+        }
+       
+      
+    </style>
+    
+</head>
+<body>
+    
+  <nav class="navbar navbar-expand-lg navbar-light ">
+    <div class="container-fluid">
+        <a class="navbar-brand fs-1 fw-bold font-monospace " href="#" style="color: #000; text-align: center;">  <img src="Asset/img/logo/SIKATA.png" alt="" width="134" height="60"> </a>
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon bg-light"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+             <ul class="nav nav-tabs navbar-nav ms-auto fw-semibold fs-6 font-monospace text-white">
+              <li class="nav-item">
+      <a class="nav-link border border-light fw-bold font-monospace" aria-current="page" href="Kota Salatiga.html">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link border border-light fw-bold font-monospace text-bg-dark " href="Kecamatan Argomulyo.html">Kecamatan Argomulyo</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link border border-light fw-bold font-monospace" href="Kecamatan Sidorejo.html">Kecamatan Sidorejo</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active border border-light fw-bold font-monospace" href="Kecamatan Sidomukti.html">Kecamatan Sidomukti</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link  border border-light fw-bold font-monospace" href="Kecamatan Tingkir.html">Kecamatan Tingkir</a>
+    </li>
+  </ul>
+        </div>
+    </div>
+</nav>
+
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="p-3 mb-2 bg-light border">
+              <div class="panel panel-default">
+                <div class="p-3 mb-2 border text-center text-success border-bottom border-success "><span class="badge text-bg-dark fw-semibold fs-5 font-monospace" style="color: #000;font-size: 100px;">Peta Kependudukan Kecamatan Sidomukti</span> </div>
+                <div id="map"></div>
+
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="p-3 mb-2 bg-light border text-success border-bottom border-success">
+                      <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-3 mb-2 bg-light border text-success border-bottom border-success">
+                      <div id="chartContainer1" style="height: 300px; width: 100%;"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-3 mb-2 bg-light border text-success border-bottom border-success">
+                      <div id="chartContainer3" style="height: 300px; width: 100%;"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-3 mb-2 bg-light border text-success border-bottom border-success">
+                      <div id="chartContainer4" style="height: 300px; width: 100%;"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-3 mb-2 bg-light border text-success border-bottom border-success">
+                      <div id="chartContainer6" style="height: 300px; width: 100%;"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-3 mb-2 bg-light border text-success border-bottom border-success">
+                      <div id="chartContainer7" style="height: 300px; width: 100%;"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-3 mb-2 bg-light border text-success border-bottom border-success">
+                      <div id="chartContainer8" style="height: 300px; width: 100%;"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-3 mb-2 bg-light border text-success border-bottom border-success">
+                      <div id="chartContainer9" style="height: 300px; width: 100%;"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-3 mb-2 bg-light border text-success border-bottom border-success">
+                      <div id="chartContainer10" style="height: 300px; width: 100%;"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-3 mb-2 bg-light border text-success border-bottom border-success">
+                      <div id="chartContainer11" style="height: 300px; width: 100%;"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-3 mb-2 bg-light border text-success border-bottom border-success">
+                      <div id="chartContainer12" style="height: 300px; width: 100%;"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-3 mb-2 bg-light border text-success border-bottom border-success">
+                      <div id="chartContainer13" style="height: 300px; width: 100%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="p-3 mb-2 bg-light border text-success border-bottom border-success">
+                      <div id="chartContainer14" style="height: 300px; width: 100%;"></div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="p-3 mb-2 bg-light border text-success border-bottom border-success">
+                      <div id="chartContainer15" style="height: 300px; width: 100%;"></div>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+           
+    <!--Membuat diagram--> 
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    <!--Leaflet JS-->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <!--bootsrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script src="bootstrap/js/bootstrap.js"></script>
+
+    <script src="autolink/Autolinker.min.js"></script>
+
+    <!-- Leaflet Measure JavaScript Library -->
+    <script src="Asset/plugins/leaflet-measure/leaflet-measure.js"></script>
+
+    <!-- Search JavaScript Library -->
+    <script src="Asset/plugins/leaflet-search/leaflet-search.js"></script>
+
+    <!-- Geolocation Javascript Library -->
+    <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
+
+    <!-- Leaflet Mouse Position JavaScript Library -->
+    <script src="Asset/plugins/leaflet-mouseposition/L.Control.MousePosition.js"></script>
+
+    <!-- EasyPrint JavaScript Library -->
+    <script src="Asset/plugins/leaflet-easyprint/leaflet.easyPrint.js"></script>
+
+    <!--Routing JavaScript Library-->
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-routing-machine/3.2.12/leaflet-routing-machine.min.js"></script>
+
+    <!--g-->
+    <script language="JavaScript" type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+     <!--Geocode dan marker cluster-->
+     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+     <script src="./dist/leaflet.markercluster.js"></script>
+    
+</body>
+</html>
+   
+    <script src="Data_Salatiga/Sidomukti_GeoJSON.geojson"></script>
+    <script src="Data_Salatiga/Pemerintahan_Sidomukti_GeoJSON.geojson"></script>
+
+
+
+
+    <script>
+      window.onload = function () {
+
+        //Dusun Noborejo
+
+        var chart = new CanvasJS.Chart("chartContainer",
+    {
+      title:{
+        text: "Jumlah Penduduk Desa Kecandran Menurut Jenis Kelamin",
+        fontSize: 15,
+        fontFamily: "Bahnschrift Condensed",
+       padding: 6,
+      },
+      legend: {
+        horizontalAlign: "center",
+        verticalAlign: "center"
+      },
+      data: [
+      {
+       showInLegend: true,
+       type: "doughnut",
+       dataPoints: [
+       {  y: 2907, name: "Pria", legendText: "Pria" },
+       {  y: 2820, name: "Wanita", legendText: "Wanita" },
+
+       ]
+     }
+     ]
+   });
+
+    chart.render();
+    
+       //Cebongan
+
+       var chart1 = new CanvasJS.Chart("chartContainer1",
+    {
+      title:{
+        text: "Jumlah Penduduk Desa Dukuh Menurut Jenis Kelamin",
+        fontSize: 15,
+        fontFamily: "Bahnschrift Condensed",
+       padding: 6,
+      },
+      legend: {
+        horizontalAlign: "center",
+        verticalAlign: "center"
+      },
+      data: [
+      {
+       showInLegend: true,
+       type: "doughnut",
+       dataPoints: [
+       {  y: 6459, name: "Pria", legendText: "Pria" },
+       {  y: 6602, name: "Wanita", legendText: "Wanita" },
+
+       ]
+     }
+     ]
+   });
+
+    chart1.render();
+
+    
+
+    //Ledok
+
+    var chart3 = new CanvasJS.Chart("chartContainer3",
+    {
+      title:{
+        text: "Jumlah Penduduk Desa Mangunsari Menurut Jenis Kelamin",
+        fontSize: 15,
+        fontFamily: "Bahnschrift Condensed",
+       padding: 6,
+      },
+      legend: {
+        horizontalAlign: "center",
+        verticalAlign: "center"
+      },
+      data: [
+      {
+       showInLegend: true,
+       type: "doughnut",
+       dataPoints: [
+       {  y: 8702, name: "Pria", legendText: "Pria" },
+       {  y: 8861, name: "Wanita", legendText: "Wanita" },
+
+       ]
+     }
+     ]
+   });
+
+    chart3.render();
+
+    //Tegalrejo
+
+    var chart4 = new CanvasJS.Chart("chartContainer4",
+    {
+      title:{
+        text: "Jumlah Penduduk Desa Kalicacing Menurut Jenis Kelamin",
+        fontSize: 15,
+        fontFamily: "Bahnschrift Condensed",
+       padding: 6,
+      },
+      legend: {
+        horizontalAlign: "center",
+        verticalAlign: "center"
+      },
+      data: [
+      {
+       showInLegend: true,
+       type: "doughnut",
+       dataPoints: [
+       {  y: 3426, name: "Pria", legendText: "Pria" },
+       {  y: 3891, name: "Wanita", legendText: "Wanita" },
+
+       ]
+     }
+     ]
+   });
+
+    chart4.render();
+
+    
+    var chart6 = new CanvasJS.Chart("chartContainer6",
+    {
+      title:{
+        text: "Pertumbuhan Penduduk di Kecamatan Sidomukti Tahun 2014-2018 (%)",
+        fontSize: 15,
+        fontFamily: "Bahnschrift Condensed",
+      },
+      data: [
+      {
+        markerType: "triangle",  //"circle", "square", "cross", "none"
+        type: "line",
+        dataPoints: [
+
+        { label:  "2014", y: 1.47},
+        { label:  "2015", y:1.41},
+        { label: "2016", y: 1.44},
+        { label:  "2017", y: 1.35}, 
+        { label: "2018", y: 1.42 },
+        ]
+      }
+      ]
+    });
+
+    chart6.render();
+
+    //sex ratio
+    var chart7 = new CanvasJS.Chart("chartContainer7",
+    {
+      title:{
+        text: "Sex Ratio di Kecamatan Sidomukti Tahun 2014-2018",
+        fontSize: 15,
+        fontFamily: "Bahnschrift Condensed",
+      },
+      data: [
+      {
+        markerType: "triangle",  //"circle", "square", "cross", "none"
+        type: "line",
+        dataPoints: [
+
+        { label:  "2014", y: 96.98},
+        { label:  "2015", y:96.95},
+        { label: "2016", y: 96.93},
+        { label:  "2017", y: 96.94}, 
+        { label: "2018", y: 96.93},
+        ]
+      }
+      ]
+    });
+
+    chart7.render();
+
+    //Jumlah Pemeluk Agama
+
+    var chart8 = new CanvasJS.Chart("chartContainer8",
+    {
+      title:{
+        text: "Jumlah Pemeluk Agama di Kecamatan Sidomukti",
+        fontSize: 15,
+        fontFamily: "Bahnschrift Condensed",
+      },
+      data: [
+      {
+        bevelEnabled: true,
+        type: "column",
+        dataPoints: [
+        { label: "Islam", y:35354},
+        { label: "Kristen", y: 8454},
+        { label: "Katolik", y:1855},
+        { label: "Hindu", y: 25},
+        { label: "Budha", y: 270},
+        { label: "Konghuchu", y:4}
+
+        ]
+      }
+      ]
+    });
+
+    chart8.render();
+
+    //Jumlah Tempat Ibadah
+
+    var chart9 = new CanvasJS.Chart("chartContainer9",
+    {
+      title:{
+        text: "Jumlah Tempat Ibadah di Kecamatan Sidomukti",
+        fontSize: 15,
+        fontFamily: "Bahnschrift Condensed",
+      },
+      data: [
+      {
+        bevelEnabled: true,
+        type: "column",
+        dataPoints: [
+        { label: "Masjid", y:55},
+        { label: "Surau", y: 48},
+        { label: "Gereja", y:27},
+        { label: "Pura/Vihara", y: 2},
+        
+        ]
+      }
+      ]
+    });
+
+    chart9.render();
+
+    //Jumlah Tamu Domestik
+
+    var chart10 = new CanvasJS.Chart("chartContainer10",
+    {
+      title:{
+        text: "Pembagian Wilayah Administrasi di Kecamatan Sidomukti ",
+        fontSize: 15,
+        fontFamily: "Bahnschrift Condensed",
+      },
+      data: [
+      {
+        type: "bar",
+        legendText: "RT",
+			  showInLegend: "true",
+        dataPoints: [
+        {  y: 26 , label: "Kecandran"},
+        {  y: 74, label: "Dukuh" },
+        {  y: 91, label: "Mangunsari" },
+        {  y: 39, label: "Kalicacing" },
+        ]
+      },
+      {
+        type: "bar",
+        legendText: "RW",
+			  showInLegend: "true",
+        dataPoints: [
+        {  y: 6, label: "Kecandran"},
+        {  y: 10, label: "Dukuh" },
+        {  y: 15, label: "Mangunsari" },
+        {  y: 7, label: "Kalicacing" },
+        ]
+      },
+    
+      ]
+    });
+
+chart10.render();
+
+//Jumlah Sekolah
+
+var chart11 = new CanvasJS.Chart("chartContainer11",
+    {
+      title:{
+        text: "Jumlah Sekolah di Kecamatan Sidomukti ",
+        fontSize: 15,
+        fontFamily: "Bahnschrift Condensed",
+      },
+      data: [
+      {
+        type: "bar",
+        legendText: "SD",
+			  showInLegend: "true",
+        dataPoints: [
+        {  y: 1, label: "Kecandran"},
+        {  y: 5, label: "Dukuh" },
+        {  y: 9, label: "Mangunsari" },
+        {  y: 2, label: "Kalicacing" },
+        ]
+      },
+      {
+        type: "bar",
+        legendText: "SMP",
+			  showInLegend: "true",
+        dataPoints: [
+        {  y: 0, label: "Kecandran"},
+        {  y: 3, label: "Dukuh" },
+        {  y: 3, label: "Mangunsari" },
+        {  y: 0, label: "Kalicacing" },
+        ]
+      },
+      {
+        type: "bar",
+        legendText: "SMA",
+			  showInLegend: "true",
+        dataPoints: [
+        {  y: 0, label: "Kecandran"},
+        {  y: 1, label: "Dukuh" },
+        {  y: 1, label: "Mangunsari" },
+        {  y: 0, label: "Kalicacing" },
+        ]
+      },
+
+      {
+        type: "bar",
+        legendText: "SMK",
+			  showInLegend: "true",
+        dataPoints: [
+        {  y: 0, label: "Kecandran"},
+        {  y: 6, label: "Dukuh" },
+        {  y: 3, label: "Mangunsari" },
+        {  y: 0, label: "Kalicacing" },
+        ]
+      },
+
+      {
+        type: "bar",
+        legendText: "Perguruan Tinggi",
+			  showInLegend: "true",
+        dataPoints: [
+        {  y: 0, label: "Kecandran"},
+        {  y: 0, label: "Dukuh" },
+        {  y: 1, label: "Mangunsari" },
+        {  y: 0, label: "Kalicacing" },
+        ]
+      },
+    
+      ]
+    });
+
+chart11.render();
+
+
+//Pekerjaan
+
+var chart12 = new CanvasJS.Chart("chartContainer12",
+    {
+      title:{
+        text: "Jumlah Kasus Pencurian di Kecamatan Sidomukti Tahun 2018 ",
+        fontSize: 15,
+        fontFamily: "Bahnschrift Condensed",
+      },
+        data: [
+      {
+        type: "stackedColumn",
+        legendText: "Curanmor",
+			  showInLegend: "true",
+        dataPoints: [
+        {  y: 0, label: "Kecandran"},
+        {  y: 3, label: "Dukuh" },
+        {  y: 1, label: "Mangunsari" },
+        {  y: 2, label: "Kalicacing" },
+        ]
+      },  {
+        type: "stackedColumn",
+        legendText: "Curat",
+			  showInLegend: "true",
+         dataPoints: [
+         {  y: 2, label: "Kecandran"},
+        {  y: 2, label: "Dukuh" },
+        {  y: 2, label: "Mangunsari" },
+        {  y: 0, label: "Kalicacing" },
+
+        ]
+      },
+      {
+        type: "stackedColumn",
+        legendText: "Penggelapan",
+			  showInLegend: "true",
+         dataPoints: [
+         {  y: 1, label: "Kecandran"},
+        {  y: 1, label: "Dukuh" },
+        {  y: 2, label: "Mangunsari" },
+        {  y: 0, label: "Kalicacing" },
+        ]
+      }
+
+      ]
+    });
+
+    chart12.render();
+
+    //Keluarga Sejahtera
+
+var chart13 = new CanvasJS.Chart("chartContainer13",
+    {
+      title:{
+        text: "Jumlah Industri dan Ketenagakerjaan di Kecamatan Sidomukti",
+        fontSize: 15,
+        fontFamily: "Bahnschrift Condensed",
+      },
+        data: [
+      {
+        type: "stackedColumn",
+        legendText: "Jumlah Usaha",
+			  showInLegend: "true",
+        dataPoints: [
+        {  y: 112, label: "Kecandran"},
+        {  y: 102, label: "Dukuh" },
+        {  y: 117, label: "Mangunsari" },
+        {  y: 141, label: "Kalicacing" },
+        ]
+      },  {
+        type: "stackedColumn",
+        legendText: "Tenaga Kerja",
+			  showInLegend: "true",
+         dataPoints: [
+         {  y: 348, label: "Kecandran"},
+        {  y: 490, label: "Dukuh" },
+        {  y: 2030, label: "Mangunsari" },
+        {  y: 424, label: "Kalicacing" },
+        ]
+      },
+
+      {
+        type: "stackedColumn",
+        legendText: "Investasi",
+			  showInLegend: "true",
+         dataPoints: [
+         {  y: 1650, label: "Kecandran"},
+        {  y: 998, label: "Dukuh" },
+        {  y: 232, label: "Mangunsari" },
+        {  y: 3052, label: "Kalicacing" },
+        ]
+      },
+
+      ]
+    });
+
+    chart13.render();
+
+    //Faskes
+
+    var chart14 = new CanvasJS.Chart("chartContainer14",
+	{
+		title:{
+			text: "Jumlah  Sarana Kesehatan di Kecamatan Sidomukti Tahun 2018 ",
+        fontSize: 15,
+        fontFamily: "Bahnschrift Condensed",
+		},
+		legend: {
+			maxWidth: 350,
+			itemWidth: 120
+		},
+		data: [
+		{
+			type: "pie",
+			showInLegend: true,
+			legendText: "{indexLabel}",
+			dataPoints: [
+				{ y: 3, indexLabel: "Rumah Sakit" },
+				{ y: 2, indexLabel: "Puskesmas "},
+        { y: 4, indexLabel: "Pustu" },
+        { y: 21, indexLabel: "Balai Pengobatan" },
+			]
+		}
+		]
+	});
+	chart14.render();
+
+
+  //Tenaga Medis
+
+  var chart15 = new CanvasJS.Chart("chartContainer15",
+	{
+		title:{
+			text: "Jumlah  Tenaga Kesehatan di Kecamatan Sidomukti Tahun 2018  ",
+        fontSize: 15,
+        fontFamily: "Bahnschrift Condensed",
+		},
+		legend: {
+			maxWidth: 350,
+			itemWidth: 120
+		},
+		data: [
+		{
+			type: "pie",
+			showInLegend: true,
+			legendText: "{indexLabel}",
+			dataPoints: [
+				{ y: 87, indexLabel: "Dokter Umum" },
+				{ y:86, indexLabel: "Dokter Spesialis" },
+				{ y: 29, indexLabel: "Dokter Gigi "},
+				{ y: 5, indexLabel: "Dukun Bayi" },
+        { y: 33, indexLabel: "Bidan" },
+			]
+		}
+		]
+	});
+	chart15.render();
+
+
+}
+
+
+      </script>
+      
+
+<script>
+
+  
+
+//Layer OSM
+
+    var map = L.map('map').setView([-7.337917579626779, 110.49395646536767], 13);
+var osm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});osm.addTo(map);
+
+
+
+var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+subdomains: 'abcd',
+	maxZoom: 19
+});
+
+
+// Google Map Layer
+
+googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+ });
+ 
+
+ // Satelite Layer
+googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+   maxZoom: 20,
+   subdomains:['mt0','mt1','mt2','mt3']
+ });
+
+
+var Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+ attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+subdomains: 'abcd',
+minZoom: 1,
+maxZoom: 16,
+ext: 'jpg'
+});
+
+
+//Layer control
+
+var baseMaps = {
+    "Satellite":googleSat,
+    "Google Map":googleStreets,
+    "Water Color":Stamen_Watercolor,
+    "OpenStreetMap": osm,
+    "CartoDB_DarkMatter": CartoDB_DarkMatter
+};
+
+// Menambahkan data administrasi
+L.geoJSON(sidomukti).addTo(map);
+
+function getColor(d) {
+    return d > 3500? '#800026' :
+           d > 3000? '#BD0026' :
+           d > 2500  ? '#E31A1C' :
+           d > 2000? '#FC4E2A' :
+           d > 1635   ? '#FD8D3C' :
+           d > 190  ? '#FEB24C' :
+           d > 740  ? '#FED976' :
+                      '#FFEDA0';
+}
+
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.Kepadatan),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+L.geoJson(sidomukti, {style: style}).addTo(map);
+
+function highlightFeature(e) {
+    var layer = e.target;
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
+
+    info.update(layer.feature.properties);
+}
+
+function resetHighlight(e) {
+    geojson.resetStyle(e.target);
+    info.update();
+}
+
+var geojson;
+// ... our listeners
+geojson = L.geoJson(sidomukti);
+
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+
+function onEachFeature1(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: zoomToFeature
+    });
+}
+
+//Contoh
+function onEachFeature(feature, layer) {
+    layer.bindPopup(feature.properties.Kepadatan),
+    that = this;
+    layer.on('mouseover',function(e){
+      this.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+      });
+
+      if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
+
+    info.update(layer.feature.properties);
+    });
+    layer.on('mouseout', function(e){
+      this.setStyle({
+        weight:2,
+        color:'feature.properties.Kepadatan',
+        dashArray:'',
+        fillOpacity:0.8
+      });
+    });
+}
+
+geojson = L.geoJson(sidomukti, {
+    style: style,
+    onEachFeature: onEachFeature1
+}).addTo(map);
+
+
+
+
+//Menambahkan info kepadatan penduduk
+var info = L.control();
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+};
+
+// method that we will use to update the control based on feature properties passed
+info.update = function (props) {
+    this._div.innerHTML = 'Kepadatan Kec. Sidomukti <br>' +  (props ?
+        '<b>' + props.NAMOBJ + '</b><br />' + props.Kepadatan + ' Orang/ Km<sup>2</sup>'
+        : 'Desa');
+};
+
+info.addTo(map);
+
+//Menambahkan legenda
+var legend = L.control({position: 'bottomleft'});
+
+legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [ 0 ,500,1000 , 1500, 2000 , 2500 , 3000,3500],
+        labels = [];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            '<i style="background:' + getColor(grades[i] + 1) + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + '<br>' : '+');
+    }
+
+    return div;
+};
+
+
+legend.addTo(map);
+
+//Menambahkan skala
+var scale = L.control.scale({position: 'bottomright'});
+scale.addTo(map);
+
+/*Plugin Search */
+var searchControl = new L.Control.Search({ 
+        position:"topleft",
+        layer: geojson,
+        propertyName: 'NAMOBJ', //Field untuk pencarian 
+        marker: false,
+        moveToLocation: function(latlng, title, map) {
+          var zoom = map.getBoundsZoom(latlng.layer.getBounds()); 
+          map.setView(latlng, zoom);
+        }
+      });
+      searchControl.on('search:locationfound', function(e) { 
+        e.layer.setStyle({
+          fillColor: '#ffff00',
+          color: '#0000ff'
+        });
+      }).on('search:collapse', function(e) { 
+        featuresLayer.eachLayer(function(layer) {
+          featuresLayer.resetStyle(layer);
+        });
+      });
+      map.addControl(searchControl);
+
+/*Plugin Mouse Position Coordinate */
+L.control.mousePosition({position:'bottomright',
+            separator: ',',
+            prefix: 'Koordinat : '
+        }).addTo(map);
+/*Plugin Measurement Tool */
+var measureControl = new L.Control.Measure({
+            position:'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'hectares',
+            secondaryAreaUnit: 'sqmeters',
+            activeColor: '#FF0000',
+            completedColor: '#00FF00'
+        });
+        measureControl.addTo(map);
+
+/*Plugin EasyPrint */
+L.easyPrint({
+        title: 'Print'
+    }).addTo(map);
+
+
+
+var MarkerIcon = L.Icon.extend({
+    options: {
+        iconSize:     [40, 40],
+        shadowSize:   [50, 64],
+        iconAnchor:   [17, 30],
+        shadowAnchor: [4, 62],
+        popupAnchor:  [1, -30]
+    }
+});
+
+
+
+var Icon1 = new MarkerIcon({iconUrl: 'Asset/img/marker/home.png'})
+L.icon = function (options) {
+    return new L.Icon(options);
+};
+
+
+L.control.layers(baseMaps).addTo(map);
+
+  L.geoJSON(pemerintahan,{
+    pointToLayer: function(feature,latlng){
+      var marker = L.marker(latlng,{icon: Icon1});
+      marker.bindPopup('<form id="regForm" action="">'+'<h6>'+  feature.properties.Name +'</h6>'
+        + '<table>'
+        + '<tr><th>Jumlah Penduduk </th><td> : '+ feature.properties.Pddk+' '+' Jiwa'+'</td></tr>' 
+        + '<tr><th>Kepadatan Penduduk </th><td> : '+feature.properties.Kepadatan+' '+' Jiwa/Km2' + '</td></tr>' 
+    + '</table>'+'<br>'
+   +
+        '</form>');
+      return marker;
+    }
+  }).addTo(map)
+
+//Geocoder
+
+var geocoder = L.Control.Geocoder.nominatim();
+
+var routeControl = L.Routing.control({
+    waypoints: [null],
+    geocoder: geocoder,
+    addWaypoints: true,
+    show: true,
+    draggableWaypoints: true,
+    routeWhileDragging: true,
+    reverseWaypoints: true,
+    autoToute: true,
+    showAlternatives: true,
+    altLineOptions: {
+        styles: [
+            {color: 'black', opacity: 0.15, weight: 9},
+            {color: 'white', opacity: 0.8, weight: 6},
+            {color: 'blue', opacity: 0.5, weight: 2}
+        ]
+    },
+    waypointNameFallback: function(latLng) {
+        function zeroPad(n) {
+            n = Math.round(n);
+            return n < 10 ? '0' + n : n;
+        }
+        function sexagesimal(p, pos, neg) {
+            var n = Math.abs(p),
+            degs = Math.floor(n),
+            mins = (n - degs) * 60,
+            secs = (mins - Math.floor(mins)) * 60,
+            frac = Math.round((secs - Math.floor(secs)) * 100);
+            return (n >= 0 ? pos : neg) + degs + 'Â°' +
+                zeroPad(mins) + '\'' +
+                zeroPad(secs) + '.' + zeroPad(frac) + '"';
+        }
+        return sexagesimal(latLng.lat, 'N', 'S') + ' ' + sexagesimal(latLng.lng, 'E', 'W');
+    },
+    show: true
+})
+.on('routingerror', function(e) {
+    try {
+        map.getCenter();
+    } catch (e) {
+        map.fitBounds(L.latLngBounds(routeControl.getWaypoints().map(function(wp) { return wp.latLng; })));
+    }
+    //handleError(e);
+    //console.log(e);
+})
+.addTo(map);
+
+routeControl.spliceWaypoints(0,2);
+//console.log(routeControl.getWaypoints().length);
+routeControl.setWaypoints([]);
+//console.log(routeControl.getWaypoints().length);
+
+
+</script>

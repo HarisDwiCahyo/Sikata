@@ -1,0 +1,11 @@
+var pemerintahan ={
+"type": "FeatureCollection",
+"name": "Pemerintahan_Sidomukti_GeoJSON",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Kecandran", "FolderPath": "Kecamatan Sidomukti", "Pddk": 5727.0, "Luas": 3.992, "Kepadatan": 1434.6192384799999 }, "geometry": { "type": "Point", "coordinates": [ 110.480032600000072, -7.320233599999938, 0.0 ] } },
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Dukuh", "FolderPath": "Kecamatan Sidomukti", "Pddk": 13061.0, "Luas": 0.787, "Kepadatan": 16595.9339263 }, "geometry": { "type": "Point", "coordinates": [ 110.485366900000088, -7.343007399999976, 0.0 ] } },
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Mangunsari", "FolderPath": "Kecamatan Sidomukti", "Pddk": 17536.0, "Luas": 2.908, "Kepadatan": 6030.2613480099999 }, "geometry": { "type": "Point", "coordinates": [ 110.490748400000086, -7.346502899999962, 0.0 ] } },
+{ "type": "Feature", "properties": { "OID_": 0, "Name": "Kantor Kelurahan Kalicacing", "FolderPath": "Kecamatan Sidomukti", "Pddk": 7317.0, "Luas": 3.772, "Kepadatan": 1939.8197242799999 }, "geometry": { "type": "Point", "coordinates": [ 110.501472300000046, -7.332985099999973, 0.0 ] } }
+]
+}

@@ -1,0 +1,11 @@
+var kecamatan={
+"type": "FeatureCollection",
+"name": "Kecamatan_Salatiga",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "NAMOBJ": null, "FGSGOV": 9, "LUAS": 0.0, "FCODE": null, "REMARK": "Kantor Camat","CD": "Kecamatan Tingkir.html", "SRS_ID": null, "LCODE": "GD0020", "METADATA": "Kantor Kecamatan Tingkir", "Pddk": 45168, "Kepadatan": 4281.73, "Desa": 6 }, "geometry": { "type": "Point", "coordinates": [ 110.519566172000054, -7.338633178999942, 0.0 ] } },
+{ "type": "Feature", "properties": { "NAMOBJ": null, "FGSGOV": 9, "LUAS": 0.0, "FCODE": null, "REMARK": "Kantor Camat","CD": "Kecamatan Tingkir.html", "SRS_ID": null, "LCODE": "GD0020", "METADATA": "Kantor Kecamatan Sidorejo", "Pddk": 45975, "Kepadatan": 2829.75, "Desa": 6 }, "geometry": { "type": "Point", "coordinates": [ 110.494814544000064, -7.306783794999944, 0.0 ] } },
+{ "type": "Feature", "properties": { "NAMOBJ": null, "FGSGOV": 9, "LUAS": 0.0, "FCODE": null, "REMARK": "Kantor Camat","CD": "Kecamatan Tingkir.html", "SRS_ID": null, "LCODE": "GD0020", "METADATA": "Kantor Kecamatan Sidomukti", "Pddk": 44249, "Kepadatan": 3861.5, "Desa": 4 }, "geometry": { "type": "Point", "coordinates": [ 110.489617322000072, -7.347685976999969, 0.0 ] } },
+{ "type": "Feature", "properties": { "NAMOBJ": null, "FGSGOV": 10, "LUAS": 0.0, "FCODE": null, "REMARK": "Kantor Camat","CD": "Kecamatan Tingkir.html", "SRS_ID": null, "LCODE": "GD0020", "METADATA": "Kantor Kecamatan Argomulyo", "Pddk": 58692, "Kepadatan": 3168.08, "Desa": 6 }, "geometry": { "type": "Point", "coordinates": [ 110.505477300000052, -7.355716, 0.0 ] } }
+]
+}
